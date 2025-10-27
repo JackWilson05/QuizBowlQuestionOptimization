@@ -1,7 +1,7 @@
 # QuizBowlQuestionOptimization
 Code for extracting most valuable + frequent initial parts of quizbowl questions for a particular query with AI.<br>
 Summarizes most frequent patterns early in the question so you can ANSWER FASTER! Also makes harder sample questions to practice with.<br>
-For now, more API based but may become web app in future.<br>
+For now, more API based but may become web app in future.<br><br>
 
 
 **SETUP STEPS**:<br>
@@ -19,4 +19,34 @@ For now, more API based but may become web app in future.<br>
    a. Install anaconda if you have not already (see <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html" target="_blank">here</a> for more information)<br>
    b. Create environment with: *conda env create -f environment.yml -p ./qb_opt_ENV* (this will create a conda environment inside your current directory at qb_opt_ENV)<br>
    c. Activate the environment with: *conda activate ./qb_opt_ENV* <br>
-5. Run this (and enjoy!): *python .\extract_and_filter.py* to get your interactive questions <br>
+5. Run this (and enjoy!): *python .\extract_and_filter.py* to get your interactive questions <br><br>
+
+
+**HOW IT WORKS:**<br>
+User query -> QBReader API Call -> Power Clue Extraction -> Gemini API Call -> Output (summaries, harder questions, and related terms)<br><br>
+
+**EXAMPLE INPUT/OUTPUT:**<br>
+<ins>Input:</ins><br>
+   - Set: all<br>
+   - Difficulty: 5,6 (Easy and Medium College)<br>
+   - Category: 2 (Science)<br>
+   - Query: Cnidaria<br>
+   - Exact Match: y<br>
+     
+<ins>Output:</ins><br>
+{<br>
+    "overall_summary": "The user is asking about the phylum Cnidaria, which includes organisms like jellyfish and corals. The questions cover various aspects of this phylum, including their body forms (polyp and medusa), unique biological features like nematocysts and mesoglea, their life cycles (planula stage), and notable members like siphonophores and species that cause Irukandji syndrome. The data also touches on their ecological roles and evolutionary significance.",<br><br>
+    "power_summary": "The most common and earliest occurring themes in the power questions revolve around specific organisms and their notable characteristics. This includes the longest known animal being a siphonophore, organisms causing Irukandji syndrome (and the eye structures involved), parasitic members causing diseases in salmon, and the presence of rhopalia for sensory functions. The ability to sleep without a brain and the concept of immortality due to stem cells are also highlighted early on. The fundamental biological features like mesoglea, hydrostatic skeleton, and the absence of a hard skeleton are also prominent.",<br><br>
+    "hard_questions": \[
+         "Name the phylum whose members are the first-known organisms capable of sleeping despite being brainless and possess specialized structures called rhopalia for movement and sensory input.",
+        "Identify the phylum that contains the longest known animal, a siphonophore exceeding 40 meters, and also includes species responsible for the dangerous Irukandji syndrome.",
+        "What phylum, characterized by a mesoglea layer and a hydrostatic skeleton, includes parasitic organisms that can cause whirling disease in salmon and genera like Haliclystus?"
+    \],<br><br>
+    "related_entities": \[
+        "Jellyfish",
+        "Corals",
+        "Siphonophorae",
+        "Irukandji syndrome",
+        "Nematocysts"
+    \]<br>
+  }<br><br>
