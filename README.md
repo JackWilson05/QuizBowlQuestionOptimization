@@ -10,7 +10,7 @@ For now, more API based but may become web app in future.<br><br>
 1. Clone this repo<br>
    a. First, open a folder where you want this to be stored (recommended Desktop/folder inside Desktop)<br>
    b. Then, open a terminal and navigate to the folder that you want this to be saved to (*cd directory_path_here*)<br>
-   c. Copy and paste this into your terminal: *git clone https://github.com/JackWilson05/QuizBowlQuestionOptimization.git*<br>
+   c. Copy and paste this into your terminal: <br>*git clone https://github.com/JackWilson05/QuizBowlQuestionOptimization.git*<br>
 2. Get a Gemini API key<br>
    a. Create your Gemini key (see <a href="https://aistudio.google.com/welcome?utm_source=PMAX&utm_source=PMAX&utm_medium=display&utm_medium=display&utm_campaign=FY25-global-DR-pmax-1710442&utm_campaign=FY25-global-DR-pmax-1710442&utm_content=pmax&utm_content=pmax&gclsrc=aw.ds&gad_source=1&gad_campaignid=21521909442&gclid=Cj0KCQjwsPzHBhDCARIsALlWNG0b-XvStIn_QZnYx4JjBuI-LuMS6SKEAXa56KBUlUDt7pZ6p7n5_aQaAszmEALw_wcB" target="_blank">here</a> for more information or <a href="https://www.youtube.com/watch?v=o8iyrtQyrZM&pp=ygUeaG93IHRvIHNldCB1cCBhIGdlbWluaSBhcGkga2V5" target="_blank">here</a> for a tutorial)<br>
    b. Create a file called *.env* in the same folder as the contents of this repo<br>
