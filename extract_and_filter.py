@@ -508,6 +508,7 @@ def first_n_sentences(html_text: str, n: int = 2) -> str:
     return ". ".join(p.strip() for p in parts[:n]) + (". " if not s.endswith((".", "?", "!")) else "")
 
 #TODO: implement function that goes from 2 sentence questions -> most valuable parts summary and 3 practice questions (made from just this stuff)
+# return json format
 
 
 
