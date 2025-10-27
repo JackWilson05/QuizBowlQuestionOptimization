@@ -1,1 +1,5 @@
 #Going to want to ignore conda and include a file for environment.yaml
+*ENV
+
+#ignore .env, which is where you locally store api keys
+.env

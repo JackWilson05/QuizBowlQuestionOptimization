@@ -11,6 +11,10 @@ import requests
 import math
 from typing import Optional, List, Dict, Any, Union
 import re
+from google import genai
+import os
+from pathlib import Path
+import shlex
 
 def get_set_list(base_url: str = "https://www.qbreader.org/api") -> List[str]:
     """
@@ -508,9 +512,102 @@ def first_n_sentences(html_text: str, n: int = 2) -> str:
     return ". ".join(p.strip() for p in parts[:n]) + (". " if not s.endswith((".", "?", "!")) else "")
 
 #TODO: implement function that goes from 2 sentence questions -> most valuable parts summary and 3 practice questions (made from just this stuff)
-# return json format {summary: , 
-#                     questions: []}
+# return json format {overall_summary: , 
+#                     power_summary: ,
+#                     hard_qs: ,
+#                     related entities: []}
+def extract_larger_trends(query, unfiltered_sentences, filtered_sentences, client):
+    if not query:
+        print("Missing query, exiting")
+        return
 
+    if not unfiltered_sentences:
+        print("Missing unfiltered sentences, exiting")
+        return
+    
+    if not filtered_sentences:
+        print("Missing filered sentences")
+        return
+    
+    if len(filtered_sentences) != len(unfiltered_sentences):
+        print(f"Warning, unequeal length sentence groups:\nUnfiltered: {len(unfiltered_sentences)}\nFiltered: {len(filtered_sentences)}")
+    # turn filtered sentences and unfiltered into a str seperated by "\n"
+    filtered_sentences_str = filtered_sentences[0]
+    unfiltered_sentences_str = unfiltered_sentences[0]
+
+    for q in unfiltered_sentences[1:]:
+        unfiltered_sentences_str += f"\n{q}"
+    
+    for q in filtered_sentences[1:]:
+        filtered_sentences_str += f"\n{q}"
+
+    prompt = f"""Based on this information about {query}, please generate the following:
+                1. Overall Summary: a string overall summary based on both the power and regular questions, which gives the reader context on the query and their interactions
+                2. Power Summary: a string sumarry based only on the power questions, which focuses on the most common and earliest things to occur in questions
+                3. Hard Questions: a list of 3 strings that simulate the style of questions, but only using the most common data from the power questions
+                4. Related Entities: a list of (no more than 5) strings that represent search terms that the user could search (other answers) that are related to this answer based on questions
+                
+
+                Please strictly follow the output format, and draw inspiration provided data.
+
+                Output format:
+                {{\"overall_summary\": "",
+                \"power_summary\": "",
+                \"hard_questions\": ["", "", ""],
+                \"retlated_entities\": ["", "", "", "", ""]}}
+                
+                
+                Data:
+
+                Power Questions (the first part of the question, which has the most impact on who buzzes first):
+                {filtered_sentences_str}
+                
+
+                Regular Questions (the same questions, but not filtered to power parts):
+                {unfiltered_sentences_str}
+                """
+    
+
+    # get response from gemini -> send to parse function
+    response = client.models.generate_content(
+    model="gemini-2.5-flash-lite",
+    contents=prompt,
+    )
+
+    print(response.text)
+
+
+def get_api_key(var_name: str = "GEMINI_API_KEY", env_path: str = ".env") -> str:
+    """Read `var_name` from .env or environment, else raise RuntimeError."""
+    env_file = Path(env_path)
+    if env_file.exists():
+        for line in env_file.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            if key.strip() == var_name:
+                return value.strip().strip('"').strip("'")
+
+    if val := os.getenv(var_name):
+        return val
+
+    raise RuntimeError(f"{var_name} not found in {env_path!r} or environment variables.")
+
+
+def get_gemini_client():
+    api_key = get_api_key()
+    client = genai.Client(api_key=api_key)
+    return client
+
+
+def parse_gemini_response(response):
+    # take in messy response, filter to after first instance of { and use prior knowledge to repair to:
+    # this format:  {{\"overall_summary\": "",
+    #               \"power_summary\": "",
+    #               \"hard_questions\": ["", "", ""],
+    #               \"retlated_entities\": ["", "", "", "", ""]}}
+    pass
 
 
 def main():
@@ -553,15 +650,17 @@ def main():
     )
 
     print(f"Returned {len(results)} questions")
-    for r in results[:10]:
+    """for r in results[:10]:
         # print the question text (not the answerline)
-        print(r["type"], "\n", r.get("setName"), "\n", r.get("id"), "\n", r.get("question"), "\n", r.get("answer"))
+        print(r["type"], "\n", r.get("setName"), "\n", r.get("id"), "\n", r.get("question"), "\n", r.get("answer"))"""
 
     first_few_sentences = []
     for res in results:
         first_few_sentences.append(first_n_sentences(res.get("question"), n=2))  # filter to first two sentences
+    unfiltered_qs = []
 
-    #
+    client = get_gemini_client()
+    extract_larger_trends(query=query, unfiltered_sentences=[res.get("question") for res in results], filtered_sentences=first_few_sentences, client=client)
 
 
 if __name__ == "__main__":
