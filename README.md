@@ -35,18 +35,18 @@ User query -> QBReader API Call -> Power Clue Extraction -> Gemini API Call -> O
      
 <ins>Output:</ins><br>
 {<br>
-    "overall_summary": "The user is asking about the phylum Cnidaria, which includes organisms like jellyfish and corals. The questions cover various aspects of this phylum, including their body forms (polyp and medusa), unique biological features like nematocysts and mesoglea, their life cycles (planula stage), and notable members like siphonophores and species that cause Irukandji syndrome. The data also touches on their ecological roles and evolutionary significance.",<br><br>
-    "power_summary": "The most common and earliest occurring themes in the power questions revolve around specific organisms and their notable characteristics. This includes the longest known animal being a siphonophore, organisms causing Irukandji syndrome (and the eye structures involved), parasitic members causing diseases in salmon, and the presence of rhopalia for sensory functions. The ability to sleep without a brain and the concept of immortality due to stem cells are also highlighted early on. The fundamental biological features like mesoglea, hydrostatic skeleton, and the absence of a hard skeleton are also prominent.",<br><br>
+    "overall_summary": "Cnidaria is a phylum of aquatic invertebrates that includes corals, jellyfish, sea anemones, and hydras. These organisms are characterized by radial symmetry and possess specialized stinging cells called nematocysts, used for defense and capturing prey. Their body plan typically consists of two epithelial layers surrounding a jelly-like mesoglea, and they exhibit two main body forms: the sessile polyp and the free-swimming medusa. Some cnidarians, like the Irukandji jellyfish, can cause severe reactions in humans. Notably, certain members of this phylum, such as Turritopsis dohrnii, are considered biologically immortal due to their ability to revert to a polyp stage. The phylum also includes the colossal siphonophores, which are colonies of specialized zooids, some reaching impressive lengths.",<br><br>
+    "power_summary": "Cnidarians are defined by the presence of nematocysts, explosive stinging organelles crucial for their survival. Their body structure is characterized by two layers of tissue surrounding a mesoglea, and they exhibit both polyp and medusa body forms. Some cnidarians, like those causing Irukandji syndrome, are particularly dangerous. Organisms within this phylum can also be identified by specialized structures like rhopalia for sensing and movement, and remarkably, some are capable of a form of biological immortality by reverting to a stem cell-like state. The extreme lengths of certain siphonophores, which are colonies of specialized individuals, also highlight unique adaptations within this phylum.",<br><br>
     "hard_questions": \[
-         "Name the phylum whose members are the first-known organisms capable of sleeping despite being brainless and possess specialized structures called rhopalia for movement and sensory input.",
-        "Identify the phylum that contains the longest known animal, a siphonophore exceeding 40 meters, and also includes species responsible for the dangerous Irukandji syndrome.",
-        "What phylum, characterized by a mesoglea layer and a hydrostatic skeleton, includes parasitic organisms that can cause whirling disease in salmon and genera like Haliclystus?"
+         "What phylum contains organisms capable of biological immortality due to stem cell properties, and is known for its stinging nematocysts and radial symmetry?",
+        "Which phylum's longest known animal is a siphonophore exceeding 40 meters, and whose members include species causing Irukandji syndrome and possess rhopalia for sensory functions?",
+        "Name the invertebrate phylum whose body plan features mesoglea between two epithelial layers and includes species like corals and jellyfish, some of which are biologically immortal."
     \],<br><br>
     "related_entities": \[
         "Jellyfish",
         "Corals",
-        "Siphonophorae",
-        "Irukandji syndrome",
+        "Sea Anemones",
+        "Siphonophore",
         "Nematocysts"
     \]<br>
   }<br><br>

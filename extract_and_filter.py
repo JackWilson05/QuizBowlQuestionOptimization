@@ -542,13 +542,18 @@ def extract_larger_trends(query, unfiltered_sentences, filtered_sentences, clien
         filtered_sentences_str += f"\n{q}"
 
     prompt = f"""Based on this information about {query}, please generate the following:
-                1. Overall Summary: a string overall summary based on both the power and regular questions, which gives the reader context on the query and their interactions
-                2. Power Summary: a string sumarry based only on the power questions, which focuses on the most common and earliest things to occur in questions
+                1. Overall Summary: a string overall summary based on both the power and regular questions, which gives the reader context on the query and their interactions. I want this summary to almost read like a mini wikipedia article, so please include 4-6 sentences that make a detailed summary. 
+                2. Power Summary: a string sumarry based only on the power questions, which focuses on the most common and earliest things to occur in questions. I want this summary to almost read like a mini wikipedia article, so please include 3-5 sentences that specifically adress the power topics.
                 3. Hard Questions: a list of 3 strings that simulate the style of questions, but only using the most common data from the power questions
                 4. Related Entities: a list of (no more than 5) strings that represent search terms that the user could search (other answers) that are related to this answer based on questions
                 
 
                 Please strictly follow the output format, and draw inspiration provided data.
+
+                Additional Instructions:
+                DO NOT say any phrases like "The user requested" or "To summarize" or anything else in this vein that makes it seem choppy/like it came from a chatbot.
+                For the summaries, it should sound like it came off of a website or out of a book, it should be a cohesive paragraph.
+                To select "power questions/hints", focus on phrases/clues that come up frequently and at the beginning of the clues (see power questions)
 
                 Output format:
                 {{\"overall_summary\": "",
