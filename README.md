@@ -4,7 +4,7 @@ Summarizes most frequent patterns early in the question so you can ANSWER FASTER
 For now, more API based but may become web app in future.<br>
 
 
-SETUP STEPS:<br>
+**SETUP STEPS**:<br>
 
 0. Git setup (see <a href="https://docs.github.com/en/get-started/git-basics/set-up-git" target="_blank">here</a> if you haven't already set git up on your computer<br>
 1. Clone this repo<br>
