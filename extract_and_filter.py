@@ -554,7 +554,7 @@ def extract_larger_trends(query, unfiltered_sentences, filtered_sentences, clien
                 {{\"overall_summary\": "",
                 \"power_summary\": "",
                 \"hard_questions\": ["", "", ""],
-                \"retlated_entities\": ["", "", "", "", ""]}}
+                \"related_entities\": ["", "", "", "", ""]}}
                 
                 
                 Data:
@@ -606,7 +606,7 @@ def parse_gemini_response(response):
     # this format:  {{\"overall_summary\": "",
     #               \"power_summary\": "",
     #               \"hard_questions\": ["", "", ""],
-    #               \"retlated_entities\": ["", "", "", "", ""]}}
+    #               \"related_entities\": ["", "", "", "", ""]}}
     pass
 
 
