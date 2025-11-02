@@ -281,7 +281,7 @@ def select_params(available_sets: List[str]) -> Optional[tuple]:
     # Hardcoded options (user-specified)
     DIFFICULTY_LABELS = [
         "Pop Culture", "Middle School", "Easy High School", "Regular High School",
-        "Hard High School", "Easy College", "Medium College", "Regionals College",
+        "Hard High School", "National High School", "Easy College", "Medium College", "Regionals College",
         "Nationals College", "Open"
     ]  # mapped to numeric keys 0..9 (use index)
 
