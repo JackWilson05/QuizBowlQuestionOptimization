@@ -28,7 +28,7 @@ User query -> QBReader API Call -> Power Clue Extraction -> Gemini API Call -> O
 **EXAMPLE INPUT/OUTPUT:**<br>
 <ins>Input:</ins><br>
    - Set: all<br>
-   - Difficulty: 5,6 (Easy and Medium College)<br>
+   - Difficulty: 6,7 (Easy and Medium College)<br>
    - Category: 2 (Science)<br>
    - Query: Cnidaria<br>
    - Exact Match: y<br>
